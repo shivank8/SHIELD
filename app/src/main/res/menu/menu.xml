@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/home_work">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_nextToKin"
+            android:title="Next to Kin"
+            android:icon="@drawable/group_add_24">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/travellingALone"
+            android:title="Travelling Alone"
+            android:icon="@drawable/flight_24">
+        </item>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_emergencyContacts"
+            android:icon="@drawable/phone_24"
+            android:title="Emergency Contacts" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_suspectRegistration"
+            android:icon="@drawable/kabaddi_24"
+            android:title="Suspect Registration" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_travelLog"
+            android:icon="@drawable/card_travel_24"
+            android:title="Travel Log" />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_manageAccount"
+            android:title="Manage Account"
+            android:icon="@drawable/manage_account">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_aboutUs"
+            android:title="About Us"
+            android:icon="@drawable/about_us">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_helpDesk"
+            android:title="Help Desk"
+            android:icon="@drawable/help_24">
+
+        </item>
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Log out"
+            android:icon="@drawable/login_logout">
+
+        </item>
+
+    </group>
+
+
+</menu>
