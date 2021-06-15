@@ -52,13 +52,16 @@
 
     </group>
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_travelLog"
             android:icon="@drawable/card_travel_24"
             android:title="Travel Log" />
 
     </group>
+
 
     <group
         android:checkableBehavior="single">
@@ -106,6 +109,15 @@
 
         </item>
 
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings"
+            android:icon="@drawable/settings">
+        </item>
     </group>
 
 

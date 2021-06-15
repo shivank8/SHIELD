@@ -4,14 +4,11 @@ import android.app.Activity;
 
 import android.content.Intent;
 import android.text.format.DateFormat;
-import android.text.format.DateUtils;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +21,6 @@ import com.example.womensafety.Models.posts;
 import com.example.womensafety.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.timepicker.TimeFormat;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,13 +35,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 
 public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder> {
 
@@ -87,10 +80,6 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
         holder.setPostPic(posts.getImage());
 
         holder.setCaption(posts.getCaption());
-
-
-
-
 
         long milliseconds = posts.getTime().getTime();
         String date = DateFormat.format("dd/MM/yyyy", new Date(milliseconds)).toString();
@@ -169,6 +158,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             }
         });
 
+        //share posts
 
         holder.share_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +173,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
         });
 
+        // comment posts going to the comment activity
 
         holder.comment_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,9 +184,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             }
         });
 
-
     }
-
 
 
     @Override
@@ -205,7 +194,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
 
     public class postViewHolder extends RecyclerView.ViewHolder {
 
-        TextView username, date, caption, postLikes, share_text, comment_text, timesAgo;
+        TextView username, date, caption, postLikes, share_text, comment_text;
 
         ImageView imageView, likePic;
 
@@ -221,7 +210,6 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postViewHolder
             share_text = (TextView) mView.findViewById(R.id.share_feature);
 
             comment_text = (TextView) mView.findViewById(R.id.comment_feature);
-
 
         }
 

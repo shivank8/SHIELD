@@ -10,23 +10,23 @@
 
     <LinearLayout
         android:layout_width="275dp"
-        android:layout_height="85dp"
+        android:layout_height="145dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         >
 
         <androidx.cardview.widget.CardView
-            android:layout_width="75dp"
-            android:layout_height="80dp"
+            android:layout_width="130dp"
+            android:layout_height="140dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="75dp"
 
             app:cardBackgroundColor="#000000">
 
             <ImageView
                 android:id="@+id/login_image"
-                android:layout_width="70dp"
-                android:layout_height="75dp"
+                android:layout_width="125dp"
+                android:layout_height="135dp"
 
                 android:layout_gravity="center"
                 android:background="#000000"
@@ -37,29 +37,42 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/header_username"
         android:layout_width="250dp"
-        android:layout_height="45dp"
+        android:layout_height="5dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="10dp"
-        >
+        android:layout_marginLeft="20dp"
+        android:fontFamily="casual"
 
-        <TextView
-            android:id="@+id/header_username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <!--
+        <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp">
 
-            android:fontFamily="casual"
+            <TextView
+                android:id="@+id/header_username"
+                android:layout_width="250dp"
+                android:layout_height="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp"
 
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+                android:fontFamily="casual"
 
-    </LinearLayout>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
+        </LinearLayout>
+    -->
     <androidx.cardview.widget.CardView
         android:layout_width="275dp"
         android:layout_height="50dp"

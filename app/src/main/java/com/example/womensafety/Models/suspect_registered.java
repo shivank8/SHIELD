@@ -2,12 +2,23 @@ package com.example.womensafety.Models;
 
 public class suspect_registered {
     String name,description,identity,mobile_num;
+    private boolean expandable;
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+    }
 
     public suspect_registered(String name, String description, String identity, String mobile_num) {
         this.name = name;
         this.description = description;
         this.identity = identity;
         this.mobile_num = mobile_num;
+
+        this.expandable = false;
     }
 
     public suspect_registered() {
@@ -49,4 +60,19 @@ public class suspect_registered {
     public void setMobile_num(String mobile_num) {
         this.mobile_num = mobile_num;
     }
+
+    /*
+    @Override
+    public String toString() {
+        return "suspect_registered{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", identity='" + identity + '\'' +
+                ", mobile_num='" + mobile_num + '\'' +
+                ", expandable=" + expandable +
+                '}';
+
+    }
+
+     */
 }
