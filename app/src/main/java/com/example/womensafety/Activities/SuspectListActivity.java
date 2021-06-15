@@ -6,42 +6,42 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.womensafety.Adapters.kinAdapter;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import com.example.womensafety.Adapters.suspectAdapter;
-import com.example.womensafety.Detail_Forms;
-import com.example.womensafety.Models.kin_registered;
+import com.example.womensafety.User.Detail_Forms;
 import com.example.womensafety.Models.suspect_registered;
 import com.example.womensafety.R;
+//import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SuspectListActivity extends AppCompatActivity {
 
-    ListView sus_list;
+    RecyclerView sus_list;
     Button add_button;
+
+
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    suspectAdapter adapter;
 
     View hView;
     TextView Username;
@@ -50,6 +50,7 @@ public class SuspectListActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,19 +58,38 @@ public class SuspectListActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference("suspects_registered");
+        /*
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mob=snapshot.child("mobile_number").getValue().toString();
+            }
 
-        sus_list = findViewById(R.id.sus_list);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+
+        reference = database.getReference("suspects_registered");
+        /*.child(mob)*/;
+
+        sus_list =(RecyclerView) findViewById(R.id.sus_list);
+        sus_list.setLayoutManager(new LinearLayoutManager(this));
+
+
         add_button = findViewById(R.id.sus_reg_button);
+
+        ((SimpleItemAnimator) sus_list.getItemAnimator()).setSupportsChangeAnimations(false);
 
         final ArrayList<suspect_registered> sus = new ArrayList<>();
 
         setUpToolbar();
         navigationView = findViewById(R.id.navigationMenu);
-        hView=navigationView.getHeaderView(0);
+/*        hView=navigationView.getHeaderView(0);
         Username=hView.findViewById(R.id.header_username);
         String user=getIntent().getStringExtra("use");
-        Username.setText(user);
+        Username.setText(user);*/
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -94,11 +114,21 @@ public class SuspectListActivity extends AppCompatActivity {
                         startActivity(new Intent(SuspectListActivity.this, AboutUsActivity.class));
                         break;
 
-/*
+                    case R.id.nav_settings:
+                        startActivity(new Intent(SuspectListActivity.this, SettingsActivity.class));
+                        break;
+
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(SuspectListActivity.this, EmergencyContactListActivity.class));
+                        break;
+
                     case R.id.nav_travelLog:
                         startActivity(new Intent(SuspectListActivity.this, TravelLog.class));
                         break;
-*/
+
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(SuspectListActivity.this, ManageActivity.class));
+                        break;
 
                     case R.id.nav_logout:
                         auth.signOut();
@@ -118,17 +148,31 @@ public class SuspectListActivity extends AppCompatActivity {
             }
         });
 
+        adapter = new suspectAdapter(SuspectListActivity.this, sus);
+
+        sus_list.setAdapter(adapter);
+
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot susSnap : snapshot.getChildren()) {
-                    suspect_registered suspectRegistered = susSnap.getValue(suspect_registered.class);
-                    sus.add(suspectRegistered);
+                for (DataSnapshot susDesSnap : snapshot.getChildren()) {
+                    for (DataSnapshot susSnap : susDesSnap.getChildren()) {
+                        try {
+                            suspect_registered suspect_registered = susSnap.getValue(suspect_registered.class);
+                            sus.add(suspect_registered);
+                        } catch (DatabaseException ignored) {
+
+                        }
+                        /*
+                        suspect_registered suspect_registered = susSnap.getValue(suspect_registered.class);
+                        sus.add(suspect_registered);
+
+                         */
+                    }
                 }
 
-                suspectAdapter adapter = new suspectAdapter(SuspectListActivity.this, 0, sus);
-
-                sus_list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -137,6 +181,11 @@ public class SuspectListActivity extends AppCompatActivity {
             }
         });
 
+        /*FirebaseRecyclerOptions<suspect_registered>options=new FirebaseRecyclerOptions.Builder<suspect_registered>()
+                .setQuery(reference,suspect_registered.class).build();
+
+        adapter = new suspectAdapter(options);
+        sus_list.setAdapter(adapter);*/
 
     }
 
@@ -155,7 +204,10 @@ public class SuspectListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
     }
+
+
+
 }

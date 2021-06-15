@@ -42,8 +42,8 @@ public class commentsAdapter extends RecyclerView.Adapter<commentsAdapter.commen
     @NonNull
     @Override
     public commentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view= LayoutInflater.from(context).inflate(R.layout.each_comment,parent,false);
-       return new commentsViewHolder(view);
+        View view= LayoutInflater.from(context).inflate(R.layout.each_comment,parent,false);
+        return new commentsViewHolder(view);
     }
 
     @Override
@@ -64,8 +64,17 @@ public class commentsAdapter extends RecyclerView.Adapter<commentsAdapter.commen
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    String user=snapshot.child(uid).child("full_name").getValue().toString();
+                    holder.setUser(user);
+                } catch (NullPointerException ignore) {
+
+                }
+                /*
                 String user=snapshot.child(uid).child("full_name").getValue().toString();
                 holder.setUser(user);
+
+                 */
             }
 
             @Override

@@ -17,8 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.womensafety.Detail_Forms;
-import com.example.womensafety.R;
+import com.example.womensafety.User.Detail_Forms;
 import com.google.android.material.navigation.NavigationView;
 
 public class TravelLogContent extends AppCompatActivity {
@@ -107,9 +106,30 @@ public class TravelLogContent extends AppCompatActivity {
                     case R.id.nav_suspectRegistration:
                         startActivity(new Intent(TravelLogContent.this, SuspectRegistrationActivity.class));
                         break;
+
+                    case R.id.nav_settings:
+                        startActivity(new Intent(TravelLogContent.this, SettingsActivity.class));
+                        break;
+
                     case R.id.nav_nextToKin:
                         startActivity(new Intent(TravelLogContent.this, NextToKinActivity.class));
                         break;
+
+                    case R.id.nav_manageAccount:
+                        startActivity(new Intent(TravelLogContent.this, ManageActivity.class));
+                        break;
+
+                    case R.id.nav_aboutUs:
+                        startActivity(new Intent(TravelLogContent.this, AboutUsActivity.class));
+                        break;
+
+
+                    case R.id.nav_emergencyContacts:
+                        startActivity(new Intent(TravelLogContent.this, EmergencyContactListActivity.class));
+                        break;
+
+
+
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -130,7 +150,7 @@ public class TravelLogContent extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
     }
 }
