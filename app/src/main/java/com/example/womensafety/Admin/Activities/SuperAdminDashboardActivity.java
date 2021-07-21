@@ -1,10 +1,5 @@
 package com.example.womensafety.Admin.Activities;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,10 +10,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.example.womensafety.Activities.LoginActivity;
-import com.example.womensafety.Admin.Adapters.SuperAdminPostAdapter;
-import com.example.womensafety.Admin.Models.SuperadminPosts;
+import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Adapters.SuperAdminPostAdapter;
+import com.example.womensafety.SuperAdmin.Models.SuperadminPosts;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -93,14 +94,14 @@ public class SuperAdminDashboardActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.superadmin_homepage:
-                        startActivity( new Intent(SuperAdminDashboardActivity.this, SuperAdminHomepage.class));
+                        startActivity( new Intent(SuperAdminDashboardActivity.this, AdminHomepage.class));
                         break;
 
                     case R.id.superadmin_home:
                         break;
 
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(SuperAdminDashboardActivity.this, ManageSuperAdminAccountActivity.class));
+                        startActivity( new Intent(SuperAdminDashboardActivity.this, SelectUserActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:

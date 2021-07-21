@@ -10,10 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.womensafety.Admin.Models.SuperAdmins;
 import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Models.SuperAdmins;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageSuperAdminAdapter extends ArrayAdapter {
     public ManageSuperAdminAdapter(@NonNull Context context, int resource, @NonNull ArrayList<SuperAdmins> superAdmin) {

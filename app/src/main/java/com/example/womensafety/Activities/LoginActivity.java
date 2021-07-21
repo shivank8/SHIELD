@@ -10,8 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.womensafety.Admin.Activities.AdminHomepage;
 import com.example.womensafety.R;
-import com.example.womensafety.SuperAdmin.Activities.AdminHomepageActivity;
+import com.example.womensafety.Admin.Activities.AdminHomepageActivity;
 import com.example.womensafety.SuperAdmin.Activities.SuperAdminHomepage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -131,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 }else if(isAdmin)
                                 {
-                                    startActivity(new Intent(LoginActivity.this, AdminHomepageActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, AdminHomepage.class));
                                 }else
                                 {
                                     startActivity(new Intent(LoginActivity.this, AdminActivity.class));

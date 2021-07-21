@@ -37,6 +37,18 @@
         <activity android:name=".SuperAdmin.Activities.UserDetailsActivity" />
         <activity android:name=".SuperAdmin.Activities.SuperAdminUsersActivity" />
         <activity android:name=".SuperAdmin.Activities.SuperAdminDashboardActivity" />
+
+        <activity android:name=".Admin.Activities.AdminHomepageActivity"></activity>
+        <activity android:name=".Admin.Activities.ManageSuperAdminActivity" />
+        <activity android:name=".Admin.Activities.RegisterSuperAdminActivity" />
+        <activity android:name=".Admin.Activities.AdminHomepage" />
+        <activity android:name=".Admin.Activities.UpdatePostActivity" />
+        <activity android:name=".Admin.Activities.AdminSettingsActivity" />
+        <activity android:name=".Admin.Activities.RegisterAdminActivity" />
+        <activity android:name=".Admin.Activities.ManageAdminActivity" />
+        <activity android:name=".Admin.Activities.UserDetailsActivity" />
+        <activity android:name=".Admin.Activities.AdminUserActivity" />
+        <activity android:name=".Admin.Activities.SuperAdminDashboardActivity" />
         <activity android:name=".Activities.SelectUserActivity" />
         <activity android:name=".Activities.EmergencyContactListActivity" />
         <activity android:name=".Activities.TrackingActivity" />

@@ -14,19 +14,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.womensafety.Activities.LoginActivity;
+import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.Models.users;
 import com.example.womensafety.R;
-import com.example.womensafety.SuperAdmin.Activities.ManageAdminActivity;
-import com.example.womensafety.SuperAdmin.Activities.ManageSuperAdminAccountActivity;
-import com.example.womensafety.SuperAdmin.Activities.ManageSuperAdminActivity;
-import com.example.womensafety.SuperAdmin.Activities.SuperAdminDashboardActivity;
-import com.example.womensafety.SuperAdmin.Activities.SuperAdminHomepage;
-import com.example.womensafety.SuperAdmin.Activities.SuperAdminSettingsActivity;
-import com.example.womensafety.SuperAdmin.Activities.SuperAdminUsersActivity;
-import com.example.womensafety.SuperAdmin.Activities.UserDetailsActivity;
 import com.example.womensafety.SuperAdmin.Adapters.ManageUsersAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -60,7 +52,7 @@ public class AdminUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_user);
+        setContentView(R.layout.activity_super_admin_users);
 
         total_users=(TextView)findViewById(R.id.total_users);
 
@@ -77,12 +69,15 @@ public class AdminUserActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.superadmin_homepage:
+                        startActivity(new Intent(AdminUserActivity.this, AdminHomepage.class));
+                        break;
 
-                    case R.id.admin_home:
-                        startActivity(new Intent(AdminUserActivity.this, AdminHomepageActivity.class));
+                    case R.id.superadmin_home:
+                        startActivity(new Intent(AdminUserActivity.this, SuperAdminDashboardActivity.class));
                         break;
                     case R.id.superadmin_manage_account:
-                        startActivity( new Intent(AdminUserActivity.this, ManageSuperAdminAccountActivity.class));
+                        startActivity( new Intent(AdminUserActivity.this, SelectUserActivity.class));
                         break;
 
                     case R.id.superadmin_manage_admin:
@@ -96,12 +91,10 @@ public class AdminUserActivity extends AppCompatActivity {
                         startActivity(new Intent(AdminUserActivity.this, ManageSuperAdminActivity.class));
                         break;
 
-                    case R.id.admin_settings:
-                        final Intent intent=new Intent(AdminUserActivity.this, SuperAdminSettingsActivity.class);
-                        intent.putExtra("flag","1");
-                        startActivity(intent);
+                    case R.id.superadmin_settings:
+                        startActivity(new Intent(AdminUserActivity.this, AdminSettingsActivity.class));
                         break;
-                    case R.id.admin_logout:
+                    case R.id.superadmin_logout:
                         auth.signOut();
                         startActivity(new Intent(AdminUserActivity.this, LoginActivity.class));
                         finish();
@@ -118,14 +111,14 @@ public class AdminUserActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
-                    num=(int)snapshot.getChildrenCount();
-                    total_users.setText( "Total Users registered :- "+Integer.toString(num));
-                }else
-                {
-                    total_users.setText("Total Users registered :- 0");
-                }
+                 if(snapshot.exists())
+                 {
+                     num=(int)snapshot.getChildrenCount();
+                     total_users.setText( "Total Users registered :- "+Integer.toString(num));
+                 }else
+                 {
+                     total_users.setText("Total Users registered :- 0");
+                 }
             }
 
             @Override
@@ -166,21 +159,16 @@ public class AdminUserActivity extends AppCompatActivity {
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 users user=users_reg.get(position);
 
                 mobile=user.getMobile_number();
                 name=user.getFull_name();
 
                 /*Log.d("user_e_mail", e_mail );*/
-                //Toast.makeText(AdminUserActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
 
-                final Intent intent=new Intent(AdminUserActivity.this, UserDetailsActivity.class);
+                final Intent intent=new Intent(AdminUserActivity.this,UserDetailsActivity.class);
                 intent.putExtra("mob",mobile);
                 intent.putExtra("username",name);
-                intent.putExtra("flag","1");
-                //Toast.makeText(AdminUserActivity.this, "Intent  start", Toast.LENGTH_SHORT).show();
-
 /*
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -191,8 +179,8 @@ public class AdminUserActivity extends AppCompatActivity {
                                 user_specific_id= use.getKey();
                                 *//*uidg=uidg+user_specific_id;
                                 intent.putExtra("user_id",uidg);*//*
-                 *//*intent.putExtra("user_id",""+user_specific_id);*//*
-                 *//*Log.d("uid", user_specific_id );
+                                *//*intent.putExtra("user_id",""+user_specific_id);*//*
+                                *//*Log.d("uid", user_specific_id );
                                 Log.d("user_email",use.child("email_id").getValue().toString() );*//*
                                 Log.d("userId",use.getKey());
                             }
@@ -211,7 +199,7 @@ public class AdminUserActivity extends AppCompatActivity {
 
 *//*              Intent intent=new Intent(SuperAdminUsersActivity.this,UserDetailsActivity.class);
                 intent.putExtra("username",name);*//*
-                 *//*intent.putExtra("userId",user_specific_id);*/
+                *//*intent.putExtra("userId",user_specific_id);*/
                 startActivity(intent);
             }
         });
@@ -236,6 +224,5 @@ public class AdminUserActivity extends AppCompatActivity {
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         actionBarDrawerToggle.syncState();
     }
-
 
 }

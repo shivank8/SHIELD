@@ -1,6 +1,12 @@
 package com.example.womensafety.Admin.Activities;
 
+import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.womensafety.Admin.Models.SuperadminPosts;
 import com.example.womensafety.R;
+import com.example.womensafety.SuperAdmin.Models.SuperadminPosts;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -92,7 +93,7 @@ public class UpdatePostActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(UpdatePostActivity.this,"caption of the post is updated successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UpdatePostActivity.this, SuperAdminDashboardActivity.class));
+                            startActivity(new Intent(UpdatePostActivity.this,SuperAdminDashboardActivity.class));
                         }
                     });
                 }else{
@@ -136,7 +137,7 @@ public class UpdatePostActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(UpdatePostActivity.this,"Post Deleted Successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(UpdatePostActivity.this, SuperAdminDashboardActivity.class));
+                            startActivity(new Intent(UpdatePostActivity.this,SuperAdminDashboardActivity.class));
                         }
                     }
                 });

@@ -1,10 +1,5 @@
 package com.example.womensafety.Admin.Activities;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +8,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import com.example.womensafety.Activities.LoginActivity;
+import com.example.womensafety.Activities.SelectUserActivity;
 import com.example.womensafety.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -33,7 +34,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_setting);
+        setContentView(R.layout.activity_super_admin_settings);
 
         auth=FirebaseAuth.getInstance();
 
@@ -45,16 +46,32 @@ public class AdminSettingsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
 
-                    case R.id.admin_home:
-                        startActivity(new Intent(AdminSettingsActivity.this, AdminHomepageActivity.class));
+                    case R.id.superadmin_homepage:
+                        startActivity(new Intent(AdminSettingsActivity.this, AdminHomepage.class));
                         break;
+
+                    case R.id.superadmin_home:
+                        startActivity(new Intent(AdminSettingsActivity.this, SuperAdminDashboardActivity.class));
+                        break;
+                    case R.id.superadmin_manage_account:
+                        startActivity( new Intent(AdminSettingsActivity.this, SelectUserActivity.class));
+                        break;
+
+                    case R.id.superadmin_manage_admin:
+                        startActivity(new Intent(AdminSettingsActivity.this, ManageAdminActivity.class));
+                        break;
+
                     case R.id.superadmin_manage_users:
                         startActivity(new Intent(AdminSettingsActivity.this, AdminUserActivity.class));
+                        break;
 
+                    case R.id.superadmin_manage_superadmin:
+                        startActivity(new Intent(AdminSettingsActivity.this, ManageSuperAdminActivity.class));
                         break;
-                    case R.id.admin_settings:
+
+                    case R.id.superadmin_settings:
                         break;
-                    case R.id.admin_logout:
+                    case R.id.superadmin_logout:
                         auth.signOut();
                         startActivity(new Intent(AdminSettingsActivity.this, LoginActivity.class));
                         finish();

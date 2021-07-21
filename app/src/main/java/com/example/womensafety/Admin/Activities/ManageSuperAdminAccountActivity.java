@@ -1,5 +1,13 @@
 package com.example.womensafety.Admin.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,14 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.womensafety.Activities.LoginActivity;
 import com.example.womensafety.R;
@@ -78,7 +78,7 @@ public class ManageSuperAdminAccountActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.superadmin_homepage:
-                        startActivity(new Intent(ManageSuperAdminAccountActivity.this, SuperAdminHomepage.class));
+                        startActivity(new Intent(ManageSuperAdminAccountActivity.this, AdminHomepage.class));
                         break;
 
                     case R.id.superadmin_home:
@@ -198,7 +198,7 @@ public class ManageSuperAdminAccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         actionBarDrawerToggle.syncState();
     }
 }
